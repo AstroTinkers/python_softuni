@@ -1,2 +1,2 @@
 orders = int(input)
-cofee
+cofee is gone
