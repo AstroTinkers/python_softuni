@@ -1,6 +1,6 @@
 number = int(input())
-
-if number > 1 and number % 2 != 0 and number % 3 != 0 and number % 5 != 0:
-    print("True")
-else:
-    print("False")
+isprime = True
+for i in range(2, number):
+    if number % i == 0:
+        isprime = False
+print(isprime)
