@@ -1,26 +1,36 @@
-cells = [c.split(" = ") for c in input().split("#")]
-cells = [(c[0], int(c[1])) for c in cells]
-water = int(input())
-fire_limits = {'High': (81, 125), 'Medium': (51, 80), 'Low': (1, 50)}
+import math
+events = input().split("|")
 
-effort = 0
-fire = 0
-extinguished_cells = []
+energy = 100
+coins = 100
 
-for (cell_type, level) in cells:
-    if water <= 0:
-        break
-    if level > water:
-        continue
-    if level < fire_limits[cell_type][0] or level > fire_limits[cell_type][1]:
-        continue
-    water -= level
-    effort += level * 0.25
-    fire += level
-    extinguished_cells.append(level)
+for event in events:
+    event_parts = command.split("-")
+    (command, value) = event_parts[0], int(event_parts[1])
+    if command == "rest":
+        old_energy = energy
+        new_energy = min(100, energy + value)
+        energy = new_energy
+        outcome = ("rest", old_energy, new_energy)
+    elif command == "order":
+        if energy < 30:
+            energy += 50
+            outcome = ("rest_forced")
+        else:
+            energy -= 30
+            outcome = ("coin_increase", coins, coins + value)
+            coins += value
+    else:
+        if coins >= value:
+            coins -= value
+            outcome = ("purchase_success", command)
+        else:
+            outcome = ("purchase_fail", command)
 
-print("Cells:")
-for cell_level in extinguished_cells:
-    print(f" - {cell_level}")
-print(f"Effort: {effort:.2f}")
-print(f"Total Fire: {fire}")
+    if outcome[0] == "rest":
+        print(f"You gained {outcome[1]} energy")
+        print(f"Current energy: {energy}")
+    elif outcome[0] == "rest_forced":
+        print("You had to rest!")
+    elif outcome[0] == "coin_increase":
+        print(f"You earned {outcome[1]} coins")
