@@ -1,8 +1,3 @@
-def string_mul(a, b):
-    return a / b
-
-
-string = int(input())
-number = int(input())
-result = string_mul(b = string, a = number)
-print(result)
+list = [2, 4, 6, 8]
+list1 = [i for i in list if i % 2 != 0]
+print(min(list1, default=None))
