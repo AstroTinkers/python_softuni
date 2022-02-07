@@ -1,93 +1,108 @@
-given_list = [int(i) for i in input().split()]
-end = False
-
-
-def exchange(a):
-    new_list = given_list[a:] + given_list[:a]
-    given_list = new_list
-    return given_list
-
-
-def max_min_index(a, b):
-    output = ""
-    if a == "max":
-        if b == "even":
-            output = given_list.index(max(i for i in given_list if i % 2 == 0))
-        elif b == "odd":
-            output = given_list.index(max(i for i in given_list if i % 2 != 0))
-    elif a == "min":
-        if b == "even":
-            output = given_list.index(min(i for i in given_list if i % 2 == 0))
-        elif b == "odd":
-            output = given_list.index(min(i for i in given_list if i % 2 != 0))
-    if output is None:
-        return "No matches"
+def exchange(index, list):
+    if index > len(list) or index < 0:
+        print("Invalid index")
+        return list
     else:
-        return output
+        return list[index + 1:] + list[:index + 1]
 
 
-def firs_last_count(a, b, c):
+def max_index(command, list):
+    if command == "even":
+        even_list = [i for i in list if i % 2 == 0]
+        if even_list:
+            return list.index(max(i for i in list if i % 2 == 0))
+        else:
+            return "No matches"
+    elif command == "odd":
+        odd_list = [i for i in list if i % 2 != 0]
+        if odd_list:
+            return list.index(max(i for i in list if i % 2 != 0))
+        else:
+            return "No matches"
+
+
+def min_index(command, list):
+    if command == "even":
+        even_list = [i for i in list if i % 2 == 0]
+        if even_list:
+            return list.index(min(i for i in list if i % 2 == 0))
+        else:
+            return "No matches"
+    elif command == "odd":
+        odd_list = [i for i in list if i % 2 != 0]
+        if odd_list:
+            return list.index(min(i for i in list if i % 2 != 0))
+        else:
+            return "No matches"
+
+
+def first_count(index, command, list):
     output = ""
-    if int(b) > len(given_list):
-        return "Invalid count"
-    elif a == "first":
-        if c == "even":
+    if index > len(list):
+        print("Invalid count")
+    else:
+        if command == "even":
             output = []
-            for i in range(0, len(given_list)):
-                if given_list[i] % 2:
+            for i in range(0, len(list)):
+                if list[i] % 2:
                     output.append(i)
-                    if len(output) > b:
+                    if len(output) > index:
                         break
                 else:
                     continue
-        elif c == "odd":
+        elif command == "odd":
             output = []
-            while len(output) < b:
-                for i in range(0, len(given_list)):
-                    if not given_list[i] % 2:
+            while len(output) < index:
+                for i in range(0, len(list)):
+                    if not list[i] % 2:
                         output.append(i)
-                        if len(output) > b:
+                        if len(output) > index:
                             break
                     else:
                         continue
-    elif a == "last":
-        if c == "even":
-            output = []
-            while len(output) < b:
-                for i in range(len(given_list), -1, -1):
-                    if given_list[i] % 2:
-                        output.append(i)
-                        if len(output) > b:
-                            break
-                    else:
-                        continue
-        elif c == "odd":
-            output = []
-            while len(output) < b:
-                for i in range(len(given_list), -1, -1):
-                    if not given_list[i] % 2:
-                        output.append(i)
-                        if len(output) > b:
-                            break
-                    else:
-                        continue
+    print(output)
+
+def last_count(index, command, list):
+    output = ""
+    if int(index) > len(list):
+        print("Invalid count")
+    if command == "even":
+        output = []
+        while len(output) < index:
+            for i in range(len(list), -1, -1):
+                if list[i] % 2:
+                    output.append(i)
+                    if len(output) > index:
+                        break
+                else:
+                    continue
+    elif command == "odd":
+        output = []
+        while len(output) < index:
+            for i in range(len(list), -1, -1):
+                if not list[i] % 2:
+                    output.append(i)
+                    if len(output) > index:
+                        break
+                else:
+                    continue
+    print(output)
 
 
-def input_data():
-    if command_line.startswith("exchange"):
-        command_line.split(" ")
-        exchange(int(command_line[1]))
-    elif command_line.startswith("max" or "min"):
-        command_line.split(" ")
-        max_min_index(command_line[0], command_line[1])
-    elif command_line.startswith("first" or "last"):
-        command_line.split(" ")
-        firs_last_count(command_line[0], command_line[1], command_line[2])
-
-while not end:
-    command_line = input()
-    if command_line.startswith("end"):
-        end = True
+given_list = [int(i) for i in input().split()]
+while True:
+    command_line = input().split()
+    if command_line[0] == "end":
+        break
     else:
-        input_data()
-print(input_data())
+        if command_line[0] == "exchange":
+            given_list = exchange(int(command_line[1]), given_list)
+        elif command_line[0] == "max":
+            print(max_index(command_line[1], given_list))
+        elif command_line[0] == "min":
+            print(min_index(command_line[1], given_list))
+        elif command_line[0] == "first":
+            first_count(int(command_line[1]), command_line[2], given_list)
+        elif command_line[0] == "last":
+            last_count(int(command_line[1]), command_line[2], given_list)
+print(given_list)
