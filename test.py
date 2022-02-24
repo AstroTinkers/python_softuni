@@ -1,6 +1,12 @@
 class pianica:
-  def __drinking(self):
-    print("Cheers")
+  """Pianicaaaa"""
+
+  def __drinking__(self, zashto):
+    self.zashto = zashto
+    print(f"Cheers{zashto}")
+
 
 me = pianica()
-me._pianica__drinking()
+me.__drinking__(20)
+
+
