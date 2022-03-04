@@ -22,8 +22,8 @@ while info != "Stop":
     email = Email(sender, receiver, content)
     list_of_mails.append(email)
     info = input()
-indicies = [int(i) for i in input().split(", ")]
-for i in indicies:
+indices = [int(i) for i in input().split(", ")]
+for i in indices:
     list_of_mails[i].send()
 for email in list_of_mails:
     print(email.get_info())
