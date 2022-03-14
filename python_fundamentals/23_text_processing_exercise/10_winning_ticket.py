@@ -1,17 +1,18 @@
-import re
-
-
 def ticket_symbols(ticket_given):
-    list_temp = re.findall("(@)(#)($)(^)+", "".join(ticket_given))
-    if len(list_temp) == 0:
-        return list_temp
-    count = {}
-    for char in list_temp:
-        count.setdefault(char, 0)
-        if char in count:
-            count[char] += 1
-    max_count = max(count, key=count.get)
-    return [el for el in (max_count * count[max_count])]
+    count = 0
+    symbol = ""
+    for char in ticket_given:
+        if char != symbol:
+            if count >= 6:
+                break
+            count = 1
+            symbol = char
+        else:
+            count += 1
+    if symbol in "@#$^":
+        return symbol * count
+    else:
+        return []
 
 
 def no_match(half_1, half_2):
@@ -23,6 +24,9 @@ for ticket in tickets:
     if len(ticket) != 20:
         print("invalid ticket")
         continue
+    if ticket[0] * 20 == ticket and ticket[0] in "@#$^":
+        print(f'ticket "{ticket}" - 10{ticket[0]} Jackpot!')
+        continue
     ticket_half_1 = ticket_symbols(ticket[:10])
     ticket_half_2 = ticket_symbols(ticket[10:])
     if no_match(ticket_half_1, ticket_half_2):
@@ -31,4 +35,4 @@ for ticket in tickets:
     if len(ticket_half_1) < 10 or len(ticket_half_2) < 10:
         print(f'ticket "{ticket}" - {min(len(ticket_half_1), len(ticket_half_2))}{ticket_half_1[0]}')
         continue
-    print(f'ticket "{ticket}" - 10{ticket_half_1[0]} Jackpot!')
+
