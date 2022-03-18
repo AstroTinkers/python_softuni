@@ -5,3 +5,4 @@ while len(number_group) > 0:
     print(f"Group of {modifier}'s: {new_group}")
     modifier += 10
     number_group = list(filter(lambda x: x not in new_group, number_group))
+    new_group.clear()
