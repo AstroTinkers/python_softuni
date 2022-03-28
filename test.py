@@ -1,14 +1,7 @@
-import re
-command = input()
-furniture_bought = {}
-pattern = r">>(?P<furniture>\w+)<<(?P<price>\d*\.?\d+?)!(?P<quantity>\d+)"
-while not command == "Purchase":
-    valid_purchase = re.match(pattern, command)
-    if valid_purchase.group('furniture' and 'price' and 'quantity'):
-        sum_of_purchase = float(valid_purchase.group('price')) * int(valid_purchase.group('quantity'))
-        if sum_of_purchase > 0:
-            furniture_bought.setdefault(valid_purchase.group('furniture'), 0)
-            furniture_bought[valid_purchase.group('furniture')] += sum_of_purchase
-    command = input()
-print(f"Bought furniture:", *furniture_bought.keys(), sep="\n")
-print(f'Total money spend: {sum(furniture_bought.values()):.2f}')
+sorted_players = {'Mid': 200, 'Support': 250}
+
+print(sorted_players)
+for pos, point in sorted_players.items():
+    sorted_players = {pos: point for pos, point in sorted(sorted_players.items(), key=lambda x: (-x[1], x[0]))}
+
+print(sorted_players)
