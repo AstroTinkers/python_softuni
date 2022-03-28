@@ -14,7 +14,7 @@ def duel(p1, p2, player_data):
 def new_player(name, pos, skill_points, player_data):
     if name in player_data:
         if pos in player_data[name]:
-            player_data[name][pos] = min(skill_points, player_data[name][pos])
+            player_data[name][pos] = max(skill_points, player_data[name][pos])
         else:
             player_data[name][pos] = skill_points
     else:
@@ -23,7 +23,8 @@ def new_player(name, pos, skill_points, player_data):
 
 def sorting_winners(player_data):
     for moba_player, moba_positions in player_data.items():
-        player_data[moba_player] = {moba_position: moba_skill for moba_position, moba_skill in sorted(moba_positions.items(), key=lambda x: (-x[1], x[0]))}
+        player_data[moba_player] = {moba_position: moba_skill for moba_position, moba_skill in
+                                    sorted(moba_positions.items(), key=lambda x: (-x[1], x[0]))}
 
 
 def max_score(player_data):
