@@ -1,29 +1,30 @@
-def add_dwarf(dwarf_line: str, dwarves: dict):
-    dwarf_name, dwarf_hat, dwarf_physics = dwarf_line.split(" <:> ")
-    dwarf_physics = int(dwarf_physics)
-    if dwarf_hat in dwarves:
-        if dwarf_name in dwarves[dwarf_hat]:
-            dwarves[dwarf_hat][dwarf_name] = max(dwarf_physics, dwarves[dwarf_hat][dwarf_name])
-        else:
-            dwarves[dwarf_hat][dwarf_name] = dwarf_physics
-    else:
-        dwarves[dwarf_hat] = {dwarf_name: dwarf_physics}
+class Dwarf:
+    def __init__(self, dwarf_data):
+        self.name, self.hat, self.physics = dwarf_data.split(" <:> ")
+        self.physics = int(self.physics)
+
+    def __repr__(self):
+        return f"({dwarf.hat}) {dwarf.name} <-> {dwarf.physics}"
+
+    def __eq__(self, other):
+        return self.name == other.name and self.hat == other.hat
 
 
-def sort_dwarves(dwarves: dict):
-    list_1 = []
-    for hat, name in dwarves.items():
-        for k1, v1 in name.items():
-            list_1.append([hat, k1, v1])
-    list_1 = list(sorted(list_1, key=lambda y: (-y[2], y[0])))
-    return list_1
-
-
-dwarves_data = {}
 input_data = input()
+dwarves = []
 while not input_data == "Once upon a time":
-    add_dwarf(input_data, dwarves_data)
+    dwarf_temp = Dwarf(input_data)
+    if dwarf_temp in dwarves:
+        dwarf_index = dwarves.index(dwarf_temp)
+        dwarves[dwarf_index].physics = max(dwarf_temp.physics, dwarves[dwarf_index].physics)
+    else:
+        dwarves.append(dwarf_temp)
     input_data = input()
-dwarves_print = sort_dwarves(dwarves_data)
-for dwarf in dwarves_print:
-    print(f"({dwarf[0]}) {dwarf[1]} <-> {dwarf[2]}")
+dwarves_by_hat_color = {}
+for dwarf in dwarves:
+    dwarves_by_hat_color.setdefault(dwarf.hat, [])
+    dwarves_by_hat_color[dwarf.hat].append(dwarf)
+dwarves_sorted = [dwarf for dwarf in sorted(dwarves, key=lambda x: (x.physics, len(dwarves_by_hat_color[x.hat])),
+                                            reverse=True)]
+for dwarf in dwarves_sorted:
+    print(dwarf)

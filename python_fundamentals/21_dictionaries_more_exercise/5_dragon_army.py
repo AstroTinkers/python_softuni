@@ -8,6 +8,10 @@ def add_dragon(type, stat, data):
         d_health = 250
     else:
         d_health = int(d_health)
+    if d_health == 'null':
+        d_health = 250
+    else:
+        d_health = int(d_health)
     if d_armor == 'null':
         d_armor = 10
     else:
