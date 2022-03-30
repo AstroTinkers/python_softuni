@@ -1,7 +1,3 @@
-sorted_players = {'Mid': 200, 'Support': 250}
+albala = {'Red': {'Grumpy': 10000}, 'Blue': {'Grumpy': 10000, 'Happy': 10000}}
 
-print(sorted_players)
-for pos, point in sorted_players.items():
-    sorted_players = {pos: point for pos, point in sorted(sorted_players.items(), key=lambda x: (-x[1], x[0]))}
-
-print(sorted_players)
+print(albala['Red']['Grumpy'])
