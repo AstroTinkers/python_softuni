@@ -19,5 +19,5 @@ while not command == "Exhibition":
     command = input()
 print("Plants for the exhibition:")
 for plant in plants_rarity:
-    avg_rarity = 0 if sum(plants_rating[plant]) == 0 else sum(plants_rating[plant]) / len(plants_rating[plant])
+    avg_rarity = 0 if plant not in plants_rating or sum(plants_rating[plant]) == 0  else sum(plants_rating[plant]) / len(plants_rating[plant])
     print(f"- {plant}; Rarity: {plants_rarity[plant]}; Rating: {avg_rarity:.2f}")
