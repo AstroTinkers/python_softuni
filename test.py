@@ -1,2 +1,3 @@
-empty = []
-print(sum(empty))
+if example is None:
+    pass
+if example == None:
