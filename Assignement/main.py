@@ -1,4 +1,5 @@
 from Assignement import classes
+import pandas
 
 car_class = classes.Car
 cars = []
