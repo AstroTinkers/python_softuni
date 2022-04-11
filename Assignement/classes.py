@@ -4,5 +4,5 @@ class Car:
         self.vin = int(self.vin)
         self.part_price = float(self.part_price) * 1.2
 
-    def __repr__(self):
-        return f"{self.model},{self.plate},{self.color},{self.vin},{self.part_price:.2f}"
+    # def __repr__(self):
+    #     return f"{self.model},{self.plate},{self.color},{self.vin},{self.part_price:.2f}"
