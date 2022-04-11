@@ -2,7 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Assignment" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Assignement" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Assignment" vcs="" />
     <mapping directory="$PROJECT_DIR$/Assignment2" vcs="" />
     <mapping directory="$PROJECT_DIR$/checklist" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/metronome" vcs="Git" />
