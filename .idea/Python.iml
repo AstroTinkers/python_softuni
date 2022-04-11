@@ -5,6 +5,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="checklist" />
-    <orderEntry type="module" module-name="Assignment2" />
+    <orderEntry type="module" module-name="Assignment" />
   </component>
 </module>
