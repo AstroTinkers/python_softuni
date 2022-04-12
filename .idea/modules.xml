@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Assignment/.idea/Assignment.iml" filepath="$PROJECT_DIR$/Assignment/.idea/Assignment.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Python.iml" filepath="$PROJECT_DIR$/.idea/Python.iml" />
       <module fileurl="file://$USER_HOME$/PycharmProjects/checklist/.idea/checklist.iml" filepath="$USER_HOME$/PycharmProjects/checklist/.idea/checklist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/metronome/.idea/metronome.iml" filepath="$PROJECT_DIR$/metronome/.idea/metronome.iml" />
     </modules>
   </component>
 </project>
